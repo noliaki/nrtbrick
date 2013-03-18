@@ -3,28 +3,29 @@
  */
 ;(function(window, $){
   'use strict';
+  var win = window,
+      document = win.document;
 
   var wlblick = function($container, param){
 
     var that = {
-      $selector : null,
-      $selectorLen : 0,
-      containerWidth : $container.width(),
-      $window : null,
-      resizeTimer : null,
-      interval : 300,
-      offset : {
-        top : 0,
-        right : 0,
-        bottom : 0,
-        left : 0
+      $selector: null,
+      $selectorLen: 0,
+      containerWidth: $container.width(),
+      $window: null,
+      resizeTimer: null,
+      offset: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
       },
-      alignOffset : 0,
-      cols : new Array(),
-      colNum : 0,
-      brickWidth : null,
-      delayTimer : null,
-      callback : function(){
+      alignOffset: 0,
+      cols: new Array(),
+      colNum: 0,
+      brickWidth: null,
+      delayTimer: null,
+      callback: function(){
         param.animateParam.firstAnimate = true;
         if(param.complete){
           param.complete.apply( $container[0] );
@@ -46,8 +47,8 @@
           }
         }
         return {
-          "width" : minWidth,
-          "outerWidth" : minOuterWidth
+          "width": minWidth,
+          "outerWidth": minOuterWidth
         };
       },
 
@@ -63,7 +64,7 @@
 
         if( param.animate && param.animateParam.firstAnimate ) {
           $container.animate({
-            "height" : that.getMaxVPoint() - param.verticalMargin - that.offset.top + "px"
+            "height": that.getMaxVPoint() - param.verticalMargin - that.offset.top + "px"
           });
         } else {
           $container.css("height", that.getMaxVPoint() - param.verticalMargin - that.offset.top + "px");
@@ -268,11 +269,11 @@
         this.offset.left = parseInt( $container.css("paddingLeft"), 10 );
 
         if( param.windowResize && !this.$window ) {
-          this.$window = $(window);
+          this.$window = $(win);
           if( $.fn.on ){
-            this.$window.on("resize", this.resizeInterval);
+            this.$window.on("resize", param.resizeInterval);
           } else {
-            this.$window.resize(this.resizeInterval);
+            this.$window.resize(param.resizeInterval);
           }          
         }
         this.layout();
@@ -286,21 +287,21 @@
 
   $.fn.wlbrick = function(option){
     var param = $.extend({
-      target : "li",
-      columnAlign : "center",
-      verticalMargin : 10,
-      horizontalMargin : 10,
-      animate : true,
-      animateParam : {
-        firstAnimate : false,
-        easing : "swing",
-        duration : 300,
-        delay : 100
+      target: "li",
+      columnAlign: "center",
+      verticalMargin: 10,
+      horizontalMargin: 10,
+      animate: true,
+      animateParam: {
+        firstAnimate: false,
+        easing: "swing",
+        duration: 300,
+        delay: 100
       },
-      primeSelector : null,
-      windowResize : true,
-      resizeInterval : 300,
-      complete : null
+      primeSelector: null,
+      windowResize: true,
+      resizeInterval: 300,
+      complete: null
     }, option);
 
     for(var i = -1, len = this.length; ++ i < len;){
@@ -316,5 +317,4 @@
     
   }// $.fn.wlbrick
 
-
-})(this, jQuery);
+})(window, jQuery);
