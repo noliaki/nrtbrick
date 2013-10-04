@@ -271,9 +271,9 @@
         if( param.windowResize && !this.$window ) {
           this.$window = $(win);
           if( $.fn.on ){
-            this.$window.on("resize", param.resizeInterval);
+            this.$window.on("resize", that.resizeInterval);
           } else {
-            this.$window.resize(param.resizeInterval);
+            this.$window.resize(that.resizeInterval);
           }          
         }
         this.layout();
