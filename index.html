@@ -2,58 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>wlbrick1.0.0</title>
+<title>rnt-blick.1.0.0</title>
 <link href="css/index.css" rel="stylesheet" type="text/css" media="all" />
-<style type="text/css">
-  html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;list-style:none;}body{line-height:1;background:#fff;color:#000;}img{vertical-align:bottom;}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{display:block;}nav ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}a{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;background:transparent;}ins{background-color:#ff9;color:#000;text-decoration:none;}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}del{text-decoration:line-through;}abbr[title],dfn[title]{border-bottom:1px dotted #000;cursor:help;}table{border-collapse:collapse;border-spacing:0;}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}input,select{vertical-align:middle;}body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
-
-  #columns {
-    padding: 15px;
-    margin: 30px auto;
-    background: #f0f0f0;
-    overflow: hidden;
-  }
-  
-  #columns li {
-    float: left;
-    width: 200px;
-    border: 3px solid #595959;
-    padding: 5px;
-    background: #e5e5e5;
-    border-radius: 10px;
-  }
-
-  #columns dl {
-    background: #fff;
-  }
-  
-  dt {
-    padding: 1em;
-    font-weight: bold;
-    border-bottom: 1px dashed #e5e5e5;
-  }
-  
-  dd {
-    padding: 1em;
-  }
-
-  #columns .blue {
-    border-color: #0af;
-  }
-
-  #columns .green {
-    border-color: #0b2;
-  }
-
-  #columns .red {
-    border-color: #f00;
-  }
-
-  #color_nav li {
-    cursor: pointer;
-  }
-
-</style>
+<link rel="shortcut icon" href="http://renoat.net/favicon.ico">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat+Alternates">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/wlbrick.js"></script>
 <script type="text/javascript">
@@ -82,7 +34,7 @@ $(function(){
       firstAnimate : false,// ページアクセスした時からアニメーションさせるかどうか。デフォルトはfalse
       easing : "swing",// イージングを指定出来ます。
       duration : 300,// アニメーションのスピードの指定
-      delay : 100// 並べるアニメーションの時間差を指定
+      delay : 10// 並べるアニメーションの時間差を指定
     },
     primeSelector : null,// 左上に持ってきたいブロックをセレクターで指定
     windowResize : true,// ウィンドウリサイズした時に再度並べ替えをするかどうか
@@ -115,14 +67,16 @@ $(function(){
 </script>
 </head>
 <body>
-  <p style="text-align:center;">windowをリサイズしてみてね！</p>
+<header>
+  <h1>rnt-blick.1.0.0</h1>
   <nav id="color_nav">
     <ul>
-      <li class="btn_red">赤色の枠のボックスがより左上に来るよ</li>
-      <li class="btn_green">緑色の枠のボックスがより左上に来るよ</li>
-      <li class="btn_blue">青色の枠のボックスがより左上に来るよ</li>
+      <li class="btn_red">CLICK!!</li>
+      <li class="btn_green">CLICK!!</li>
+      <li class="btn_blue">CLICK!!</li>
     </ul>
   </nav>
+</header>
 <ul id="columns">
 	<li>
     <dl>

@@ -55,7 +55,10 @@
       /*  positionSet
       --------------------------------------------*/
       positionSet : function(){
-        $container.css("position", "relative");
+        var positionPop = $container.css("position");
+        if( positionPop !== "absolute" && positionPop !== "relative" ){
+          $container.css("position", "relative");
+        }
         this.$selector.css("position", "absolute");
 
         for(var i = -1; ++ i < this.$selectorLen;){
