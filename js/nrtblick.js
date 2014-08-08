@@ -1,5 +1,5 @@
 /*!
- * jquery.wlbrick.1.0.2.js
+ * jquery.nrtbrick.1.0.2.js
  */
 ;(function(window, $){
   'use strict';
@@ -288,7 +288,7 @@
     return that;
   };// wlblick
 
-  $.fn.wlbrick = function(option){
+  $.fn.nrtbrick = function(option){
     var param = $.extend({
       target: "li",
       columnAlign: "center",
@@ -309,15 +309,15 @@
 
     for(var i = -1, len = this.length; ++ i < len;){
       var $this = this.eq(i);
-      if( $this.data("wlbrick") ){
-        $this.data("wlbrick").layout( option );
+      if( $this.data("nrtbrick") ){
+        $this.data("nrtbrick").layout( option );
       } else {
-        $this.data( "wlbrick", wlblick($this, param) );
+        $this.data( "nrtbrick", wlblick($this, param) );
       }
     }
 
     return this;
     
-  }// $.fn.wlbrick
+  }// $.fn.nrtbrick
 
 })(window, jQuery);
