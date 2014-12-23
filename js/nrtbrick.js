@@ -6,13 +6,14 @@
   var win = window,
       document = win.document;
 
-  var wlblick = function($container, param){
+  var nrtbrick = function($container, param){
 
     var that = {
       $selector: null,
       $selectorLen: 0,
       containerWidth: $container.width(),
       $window: null,
+      $container: $container,
       resizeTimer: null,
       offset: {
         top: 0,
@@ -21,7 +22,7 @@
         left: 0
       },
       alignOffset: 0,
-      cols: new Array(),
+      cols: [],
       colNum: 0,
       brickWidth: null,
       delayTimer: null,
@@ -35,12 +36,13 @@
       /*  get min-width in bricks
       --------------------------------------------*/
       minBrickWidth : function(){
-        var
-        minWidth = this.$selector.eq(0).width(),
-        minOuterWidth = this.$selector.eq(0).outerWidth();
+        var minWidth = this.$selector.eq(0).width(),
+            minOuterWidth = this.$selector.eq(0).outerWidth(),
+            i = 0,
+            selectorWidth = 0;
 
-        for(var i = 0; ++ i < this.$selectorLen;){
-          var selectorWidth = this.$selector.eq(i).width();
+        for(; ++ i < this.$selectorLen;){
+          selectorWidth = this.$selector.eq(i).width();
           if( minWidth > selectorWidth ){
             minWidth = selectorWidth;
             minOuterWidth = this.$selector.eq(i).outerWidth();
@@ -55,13 +57,14 @@
       /*  positionSet
       --------------------------------------------*/
       positionSet : function(){
-        var positionPop = $container.css("position");
+        var positionPop = $container.css("position"),
+            i = -1;
         if( positionPop !== "absolute" && positionPop !== "relative" ){
           $container.css("position", "relative");
         }
         this.$selector.css("position", "absolute");
 
-        for(var i = -1; ++ i < this.$selectorLen;){
+        for(; ++ i < this.$selectorLen;){
           this.arrangeBrick( this.$selector.eq(i), i );
         }
 
@@ -78,25 +81,34 @@
       /*  arrangeBrick
       --------------------------------------------*/
       arrangeBrick : function( $brick, index ){
-        var
-        minIndex = 0,
-        position = {};
+        var minIndex = 0,
+            position = {},
+            widthRate = 0,
+            maxTop = 0,
+            i = 0,
+            j = 0,
+            len = 0,
+            totalMaxPoint,
+            maxPoint;
 
         if( $brick.width() > this.brickWidth.width && this.colNum > 1) {
 
-          var
-          widthRate = Math.ceil( ($brick.outerWidth() + param.horizontalMargin) / (this.brickWidth.outerWidth + param.horizontalMargin) ),
+          widthRate = Math.ceil( ($brick.outerWidth() + param.horizontalMargin) / (this.brickWidth.outerWidth + param.horizontalMargin) );
           totalMaxPoint = [];
+          maxTop = 0;
 
-          for(var i = -1, len = this.colNum - widthRate + 1; ++ i < len;){
-            var maxPoint = [];
-            for(var j = -1; ++ j < widthRate;){
+          i = -1;
+          len = this.colNum - widthRate + 1;
+
+          for(; ++ i < len;){
+            maxPoint = [];
+            for(j = -1; ++ j < widthRate;){
               maxPoint[j] = this.cols[i + j];
             }
             totalMaxPoint[i] = this.getMaxVPoint(maxPoint);
           }
 
-          var maxTop = totalMaxPoint[minIndex];
+          maxTop = totalMaxPoint[minIndex];
           
           for(i = 0; ++ i < len;){
             if(maxTop > totalMaxPoint[i]){
@@ -127,6 +139,9 @@
         }
       },
 
+      
+      /*  arrangeBrick
+      --------------------------------------------*/
       brikAnimation : function($brick, index, position){
         if( param.animateParam.delay ){
           that.delayTimer[index] = setTimeout(function(){
@@ -152,11 +167,11 @@
       },
 
       getMinIndex : function(){
-        var
-        minPoint = this.cols[0].vPoint,
-        minIndex = 0;
+        var minPoint = this.cols[0].vPoint,
+            minIndex = 0,
+            i = 0;
 
-        for(var i = 0; ++ i < this.colNum;){
+        for(; ++ i < this.colNum;){
           if( minPoint > this.cols[i].vPoint ){
             minPoint = this.cols[i].vPoint;
             minIndex = i;
@@ -166,19 +181,21 @@
       },
 
       getMaxVPoint : function(vPointArray){
-        var
-        vArray = vPointArray || this.cols,
-        max = vArray[0].vPoint;
+        var vArray = vPointArray || this.cols,
+            max = vArray[0].vPoint,
+            i = 0,
+            len = vArray.length;
 
-        for(var i = 0, len = vArray.length; ++ i < len;){
+        for(; ++ i < len;){
           max = vArray[i].vPoint > max? vArray[i].vPoint : max;
         }
         return max;
       },
 
       setCols : function(){
-        var positionArray = new Array();
-        for(var i = - 1; ++ i < this.colNum;) {
+        var positionArray = [],
+            i = 0;
+        for(i = - 1; ++ i < this.colNum;) {
           positionArray[i] = {
             "left" : i * (this.brickWidth.outerWidth + param.horizontalMargin) + this.offset.left + that.alignOffset,
             "vPoint" : this.offset.top
@@ -188,6 +205,8 @@
       },
 
       layout : function( overWriteParam ){
+        var containerWidth = 0;
+
         that.$selector.stop();
 
         if( overWriteParam ){
@@ -211,7 +230,7 @@
 
         that.brickWidth = that.minBrickWidth();
 
-        var containerWidth = that.containerWidth = $container.width();
+        containerWidth = that.containerWidth = $container.width();
 
         that.colNum = Math.floor( containerWidth / (that.brickWidth.outerWidth + param.horizontalMargin) );
         that.colNum = containerWidth % (that.brickWidth.outerWidth + param.horizontalMargin) > that.brickWidth.outerWidth? that.colNum + 1 : that.colNum;
@@ -240,7 +259,10 @@
       },
 
       clearDelayTimer : function(){
-        for(var i = -1, len = this.delayTimer.length; ++ i < len;){
+        var i = -1,
+            len = this.delayTimer.length;
+
+        for(; ++ i < len;){
           clearTimeout( this.delayTimer[i] );
         }
       },
@@ -253,8 +275,9 @@
       },
 
       arrangePrimSelector : function(primeSelector){
-        var primeArray = primeSelector.replace(/\s/g, "").split(",");
-        for(var i = primeArray.length; --i >= 0;){
+        var primeArray = primeSelector.replace(/\s/g, "").split(","),
+            i = primeArray.length;
+        for(; --i >= 0;){
           $container.prepend( $container.find( primeArray[i] ) );
         }
         return $container;
@@ -286,7 +309,7 @@
     that.init();
 
     return that;
-  };// wlblick
+  };// nrtbrick
 
   $.fn.nrtbrick = function(option){
     var param = $.extend({
@@ -305,14 +328,18 @@
       windowResize: true,
       resizeInterval: 300,
       complete: null
-    }, option);
+    }, option),
 
-    for(var i = -1, len = this.length; ++ i < len;){
-      var $this = this.eq(i);
+        i = -1,
+        len = this.length,
+        $this;
+
+    for(; ++ i < len;){
+      $this = this.eq(i);
       if( $this.data("nrtbrick") ){
         $this.data("nrtbrick").layout( option );
       } else {
-        $this.data( "nrtbrick", wlblick($this, param) );
+        $this.data( "nrtbrick", nrtbrick($this, param) );
       }
     }
 
