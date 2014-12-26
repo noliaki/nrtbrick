@@ -1,10 +1,10 @@
 ## 使い方
 jQueryのプラグインです。  
 ブロックを敷き詰めるっていうだけのものです。  
-jQueryを読み込んだら`nrtbrick.js`も読み込んでください。  
+jQueryを読み込んだら`rntbrick.js`も読み込んでください。  
 そして以下のコードを`document.ready`のタイミングで記述すればOKです。  
 ```javascript
-$("【並べたいブロックを包括している要素のセレクター】").nrtbrick({
+$("【並べたいブロックを包括している要素のセレクター】").rntbrick({
   target : "li",// 並べたいブロックをjQueryセレクターで指定。（デフォルトは"li"）
   columnAlign : "center",// 表示位置を指定します。（left,center,rightのいずれか。デフォルトはcenter）
   verticalMargin : 10,
