@@ -1,12 +1,12 @@
 /*!
- * jquery.rnt.1.0.2.js
+ * jquery.rntbrick.1.0.2.js
  */
 ;(function(window, $){
   'use strict';
   var win = window,
       document = win.document;
 
-  var rnt = function($container, param){
+  var rntbrick = function($container, param){
 
     var that = {
       $selector: null,
@@ -311,9 +311,9 @@
     that.init();
 
     return that;
-  };// rnt
+  };// rntbrick
 
-  $.fn.rnt = function(option){
+  $.fn.rntbrick = function(option){
     var param = $.extend({
       target: "li",
       columnAlign: "center",
@@ -338,15 +338,15 @@
 
     for(; ++ i < len;){
       $this = this.eq(i);
-      if( $this.data("rnt") ){
-        $this.data("rnt").layout( option );
+      if( $this.data("rntbrick") ){
+        $this.data("rntbrick").layout( option );
       } else {
-        $this.data( "rnt", rnt($this, param) );
+        $this.data( "rntbrick", rntbrick($this, param) );
       }
     }
 
     return this;
     
-  }// $.fn.rnt
+  }// $.fn.rntbrick
 
 })(window, jQuery);
