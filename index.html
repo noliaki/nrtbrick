@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>nrtbrick.1.0.0</title>
+<title>rntbrick.1.0.0</title>
 <link href="css/index.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="shortcut icon" href="http://renoat.net/favicon.ico">
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat+Alternates">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script type="text/javascript" src="js/nrtbrick.js"></script>
+<script type="text/javascript" src="js/rntbrick.js"></script>
 <script type="text/javascript">
 $(function(){
   var colorClass = [
@@ -24,7 +24,7 @@ $(function(){
   });
 
 // 使用出来るパラメータ
-  $("#columns").nrtbrick({
+  $("#columns").rntbrick({
     target : "li",// 並べたいブロックをjQueryセレクターで指定。（デフォルトは"li"）
     columnAlign : "center",// 表示位置を指定します。（left,center,rightのいずれか。デフォルトはcenter）
     verticalMargin : 10,
@@ -45,19 +45,19 @@ $(function(){
   });
 
   $("#color_nav .btn_red").click(function(){
-    $("#columns").nrtbrick({
+    $("#columns").rntbrick({
       primeSelector : ".red"
     });
   });
 
   $("#color_nav .btn_green").click(function(){
-    $("#columns").nrtbrick({
+    $("#columns").rntbrick({
       primeSelector : ".green"
     });
   });
 
   $("#color_nav .btn_blue").click(function(){
-    $("#columns").nrtbrick({
+    $("#columns").rntbrick({
       primeSelector : ".blue"
     });
   });
@@ -68,7 +68,7 @@ $(function(){
 </head>
 <body>
 <header>
-  <h1>nrtbrick.1.0.0</h1>
+  <h1>rntbrick.1.0.0</h1>
   <nav id="color_nav">
     <ul>
       <li class="btn_red">CLICK!!</li>

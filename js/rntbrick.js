@@ -1,12 +1,12 @@
 /*!
- * jquery.nrtbrick.1.0.2.js
+ * jquery.rnt.1.0.2.js
  */
 ;(function(window, $){
   'use strict';
   var win = window,
       document = win.document;
 
-  var nrtbrick = function($container, param){
+  var rnt = function($container, param){
 
     var that = {
       $selector: null,
@@ -139,7 +139,7 @@
         }
       },
 
-      
+
       /*  arrangeBrick
       --------------------------------------------*/
       brikAnimation : function($brick, index, position){
@@ -166,6 +166,8 @@
         }
       },
 
+      /*  getMinIndex
+      --------------------------------------------*/
       getMinIndex : function(){
         var minPoint = this.cols[0].vPoint,
             minIndex = 0,
@@ -309,9 +311,9 @@
     that.init();
 
     return that;
-  };// nrtbrick
+  };// rnt
 
-  $.fn.nrtbrick = function(option){
+  $.fn.rnt = function(option){
     var param = $.extend({
       target: "li",
       columnAlign: "center",
@@ -336,15 +338,15 @@
 
     for(; ++ i < len;){
       $this = this.eq(i);
-      if( $this.data("nrtbrick") ){
-        $this.data("nrtbrick").layout( option );
+      if( $this.data("rnt") ){
+        $this.data("rnt").layout( option );
       } else {
-        $this.data( "nrtbrick", nrtbrick($this, param) );
+        $this.data( "rnt", rnt($this, param) );
       }
     }
 
     return this;
     
-  }// $.fn.nrtbrick
+  }// $.fn.rnt
 
 })(window, jQuery);
